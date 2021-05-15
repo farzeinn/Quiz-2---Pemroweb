@@ -24,6 +24,15 @@
             $_SESSION['user_logged_in'] = [
                 'name' => $username
             ];
+            $cookie_name = "cookie_username";
+            $cookie_value = $username;
+            $cookie_time = time() + (60 * 60 * 24 * 30);
+            setcookie($cookie_name,$cookie_value,$cookie_time,"/");
+
+            $cookie_name = "cookie_password";
+            $cookie_value = md5($password);
+            $cookie_time = time() + (60 * 60 * 24 * 30);
+            setcookie($cookie_name,$cookie_value,$cookie_time,"/");
             header("Location: dashboard.php");
             exit;
         }
